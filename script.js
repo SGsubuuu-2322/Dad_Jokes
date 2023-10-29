@@ -5,16 +5,29 @@ jokeBtn.addEventListener("click", fetchJokes);
 
 fetchJokes();
 
-function fetchJokes() {
+async function fetchJokes() {
   const config = {
     headers: {
       Accept: "application/json",
     },
   };
 
-  fetch("https://icanhazdadjoke.com", config)
-    .then((res) => res.json())
-    .then((data) => {
-      jokeEl.innerHTML = data.joke;
-    });
+  const res = await fetch("https://icanhazdadjoke.com", config);
+  const data = await res.json();
+
+  jokeEl.innerHTML = data.joke;
 }
+
+// function fetchJokes() {
+//   const config = {
+//     headers: {
+//       Accept: "application/json",
+//     },
+//   };
+
+//   fetch("https://icanhazdadjoke.com", config)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       jokeEl.innerHTML = data.joke;
+//     });
+// }
